@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELICTUS ENTERPRISES | Quality Furniture & Interior Solutions</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #3e2723;
+            --accent-color: #d84315; 
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f9f9f9;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-color);
+        }
+
+        .admin-btn {
+            background-color: #555;
+            border-radius: 4px;
+            padding: 5px 15px !important;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/reception1.jpg') center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            color: var(--text-light);
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px; }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover { background-color: #bf360c; transform: translateY(-2px); }
+
+        /* Sections */
+        section { padding: 5rem 5%; }
+        .section-title { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: var(--primary-color); }
+
+        /* Our Promise (Mission/Vision) */
+        .promise-section {
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+        
+        .promise-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .promise-content h3 {
+            color: var(--accent-color);
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover { transform: translateY(-5px); }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+
+        /* Admin Dashboard */
+        #admin-panel {
+            display: none;
+            background-color: #fff3e0;
+            padding: 3rem 5%;
+            border: 2px dashed var(--accent-color);
+            margin: 2rem 5%;
+            border-radius: 10px;
+        }
+
+        #admin-panel h2 { color: var(--primary-color); margin-bottom: 1rem; }
+        .upload-area {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Categorized Gallery */
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #eee;
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Contact Section */
+        .contact-section { 
+            background-color: var(--primary-color); 
+            color: white; 
+            text-align: center; 
+        }
+        .contact-section .section-title { color: white; }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .contact-card:hover { background: rgba(255,255,255,0.2); }
+        .contact-card i { font-size: 2.5rem; color: #25D366; margin-bottom: 1rem; }
+        .contact-card h3 { margin-bottom: 0.5rem; }
+        .contact-card p { font-size: 1.1rem; }
+
+        /* Footer */
+        footer { background-color: #1a1a1a; color: #ccc; text-align: center; padding: 2rem; }
+        
+        /* Floating WhatsApp Button */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1500;
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-wa:hover { transform: scale(1.1); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .input-group {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            padding-right: 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px; left: 0; width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ELICTUS ENTERPRISES</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#promise">Our Promise</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Our Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <!-- Admin Login/Logout buttons -->
+            <li id="login-btn-container"><a onclick="openLogin()" class="admin-btn"><i class="fas fa-lock"></i> Admin Login</a></li>
+            <li id="logout-btn-container" style="display:none;"><a onclick="logout()" class="admin-btn" style="background-color: #d32f2f;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-panel">
+        <h2><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+        <p>Welcome back! Here you can upload new pictures to your website gallery.</p>
+        <div class="upload-area">
+            <h3>Upload New Picture</h3>
+            <input type="file" id="imageUpload" accept="image/*" multiple>
+            <button class="btn" onclick="uploadImages()" style="margin-top: 15px;">Upload to Gallery</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to ELICTUS ENTERPRISES</h1>
+        <p><strong>We are ready when you are.</strong> Your one-stop solution for premium custom furniture, gypsum roofs, doors, and complete interior fittings.</p>
+        <a href="https://wa.me/254725675218?text=Hello%20ELICTUS%20ENTERPRISES%2C%20I%20am%20visiting%20your%20website%20and%20I%20am%20interested%20in%20your%20services.%20I%20would%20like%20to%20inquire%20about%3A%20" target="_blank" class="btn">Get a Free Quote</a>
+    </section>
+
+    <!-- Our Promise Section -->
+    <section id="promise" class="promise-section">
+        <h2 class="section-title">Our Promise to You</h2>
+        <div class="promise-content">
+            <p><strong>We welcome all customers with open arms.</strong> At ELICTUS ENTERPRISES, we believe that your space should reflect your personality and meet your highest standards of comfort and functionality. Whether you need a single custom desk or a complete office fit-out, we are ready when you are.</p>
+            
+            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+            <p>To deliver high-quality, precision-crafted furniture and interior solutions that exceed our clients' expectations through honest workmanship and exceptional customer service.</p>
+
+            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+            <p>To be the leading and most trusted provider of bespoke furniture and interior designs, transforming houses into beautiful, functional homes and turning workplaces into inspiring environments.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">What We Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-couch"></i>
+                <h3>Custom Furniture</h3>
+                <p>From elegant study desks and wardrobes to bespoke beds, sofas, and dining tables.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-home"></i>
+                <h3>Gypsum Roofs & Ceilings</h3>
+                <p>Expert installation of modern gypsum roofs, ceilings, and decorative wall panels.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-door-open"></i>
+                <h3>Doors & Cabinets</h3>
+                <p>High-quality wooden doors, kitchen cabinets, and TV consoles crafted to perfection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" style="background-color: var(--bg-light);">
+        <h2 class="section-title">Our Recent Work</h2>
+
+        <h3 class="category-title">Workplace & Commercial Designs</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="images/reception1.jpg" alt="Modern Reception Desk"></div>
+            <div class="gallery-item"><img src="images/reception2.jpg" alt="Curved Reception Counter"></div>
+            <div class="gallery-item"><img src="images/reception3.jpg" alt="Fluted Wood Reception Desk"></div>
+            <div class="gallery-item"><img src="images/exhibition1.jpg" alt="Exhibition Booth Construction"></div>
+            <div class="gallery-item"><img src="images/exhibition2.jpg" alt="Genes2Me Exhibition Booth"></div>
+            <div class="gallery-item"><img src="images/exhibition3.jpg" alt="Meco Exhibition Booth"></div>
+            <div class="gallery-item"><img src="images/exhibition4.jpg" alt="Wooden Exhibition Stand"></div>
+            <div class="gallery-item"><img src="images/tvwall.jpg" alt="Office TV Wall Unit"></div>
+        </div>
+
+        <h3 class="category-title">Bedroom & Wardrobes</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="images/bed1.jpg" alt="4 Poster Wooden Bed"></div>
+            <div class="gallery-item"><img src="images/bed2.jpg" alt="Classic Wooden Bed Frame"></div>
+            <div class="gallery-item"><img src="images/wardrobe.jpg" alt="Sliding Mirror Wardrobe"></div>
+        </div>
+
+        <h3 class="category-title">Living & Dining Furniture</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="images/sofa.jpg" alt="White Modern Sofa"></div>
+            <div class="gallery-item"><img src="images/coffee1.jpg" alt="Modern White Coffee Table"></div>
+            <div class="gallery-item"><img src="images/coffee2.jpg" alt="Leaf Pattern Wooden Table"></div>
+            <div class="gallery-item"><img src="images/chairs.jpg" alt="Leaf Carved Wooden Chairs"></div>
+            <div class="gallery-item"><img src="images/cabinet1.jpg" alt="Corner Glass Display Cabinet"></div>
+            <div class="gallery-item"><img src="images/cabinet2.jpg" alt="Dark Wood TV Stand"></div>
+        </div>
+
+        <h3 class="category-title">Interiors, Ceilings & Kitchens</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="images/stairs.jpg" alt="Wooden Staircase"></div>
+            <div class="gallery-item"><img src="images/ceiling1.jpg" alt="Gypsum Ceiling Downlights"></div>
+            <div class="gallery-item"><img src="images/ceiling2.jpg" alt="Gypsum Ceiling LED Lights"></div>
+            <div class="gallery-item"><img src="images/wallpanel.jpg" alt="Fluted Wall Paneling"></div>
+            <div class="gallery-item"><img src="images/kitchen.jpg" alt="Modern Kitchen Cabinets"></div>
+        </div>
+
+        <h3 class="category-title" id="recent-uploads-title" style="display:none;">Recently Uploaded (Admin)</h3>
+        <div class="gallery-grid" id="user-upload-container"></div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get in Touch</h2>
+        <p>Have a project in mind? We are ready to help you bring it to life. Reach out to us today.</p>
+        
+        <div class="contact-container">
+            <a href="https://wa.me/254725675218?text=Hello%20ELICTUS%20ENTERPRISES%2C%20I%20am%20visiting%20your%20website%20and%20I%20am%20interested%20in%20your%20services.%20I%20would%20like%20to%20inquire%20about%3A%20" target="_blank" class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Chat on WhatsApp</h3>
+                <p>0725 675 218</p>
+                <small>Click to message us directly</small>
+            </a>
+
+            <a href="tel:+254725675218" class="contact-card">
+                <i class="fas fa-phone-alt" style="color: var(--accent-color);"></i>
+                <h3>Call Us</h3>
+                <p>0725 675 218</p>
+                <small>Available during business hours</small>
+            </a>
+
+            <a href="mailto:elijahnyangoto@gmail.com" class="contact-card">
+                <i class="fas fa-envelope" style="color: var(--accent-color);"></i>
+                <h3>Email Us</h3>
+                <p>elijahnyangoto@gmail.com</p>
+                <small>Send us your project details</small>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>ELICTUS ENTERPRISES</strong></p>
+        <p>For more information, reach us at: <strong>0725675218</strong> | <strong>elijahnyangoto@gmail.com</strong></p>
+        <p>&copy; 2023 ELICTUS ENTERPRISES. All Rights Reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/254725675218?text=Hello%20ELICTUS%20ENTERPRISES%2C%20I%20am%20visiting%20your%20website%20and%20I%20am%20interested%20in%20your%20services.%20I%20would%20like%20to%20inquire%20about%3A%20" target="_blank" class="floating-wa" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Admin Login</h2>
+            <p>Enter password to manage the website.</p>
+            
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="Enter Password" onkeypress="if(event.key === 'Enter') login()">
+                <i class="fas fa-eye toggle-password" onclick="togglePassword()" id="toggleIcon"></i>
+            </div>
+
+            <button type="button" class="btn" onclick="login()" style="width: 100%;">Login</button>
+            <button type="button" onclick="closeLogin()" style="background: none; border: none; color: #666; margin-top: 15px; cursor: pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. MOBILE MENU ---
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // --- 2. ADMIN LOGIN & LOGOUT ---
+        const ADMIN_PASSWORD = "admin123"; 
+        const loginModal = document.getElementById('loginModal');
+        
+        // Safely check local storage on load
+        window.onload = function() {
+            try {
+                if(localStorage.getItem('isAdmin') === 'true') {
+                    showAdminDashboard();
+                }
+                loadSavedImages(); 
+            } catch (e) {
+                console.log("Local storage might be blocked by browser settings.");
+            }
+        }
+
+        function openLogin() { 
+            loginModal.style.display = 'flex'; 
+            document.getElementById('passwordInput').focus();
+        }
+        
+        function closeLogin() { 
+            loginModal.style.display = 'none'; 
+            document.getElementById('passwordInput').value = ''; 
+            document.getElementById('passwordInput').type = 'password'; 
+            document.getElementById('toggleIcon').className = 'fas fa-eye toggle-password';
+        }
+
+        function togglePassword() {
+            const passInput = document.getElementById('passwordInput');
+            const icon = document.getElementById('toggleIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.className = 'fas fa-eye-slash toggle-password';
+            } else {
+                passInput.type = 'password';
+                icon.className = 'fas fa-eye toggle-password';
+            }
+        }
+
+        function login() {
+            // Get value and remove any accidental spaces
+            const pass = document.getElementById('passwordInput').value.trim(); 
+            
+            if (pass === ADMIN_PASSWORD) {
+                try {
+                    localStorage.setItem('isAdmin', 'true');
+                } catch(e) {}
+                
+                closeLogin();
+                showAdminDashboard();
+                alert("Login Successful! Welcome to the Dashboard.");
+            } else {
+                alert("Incorrect Password. Make sure it is: admin123 (lowercase, no spaces).");
+            }
+        }
+
+        function logout() {
+            try {
+                localStorage.removeItem('isAdmin');
+            } catch(e) {}
+            
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('login-btn-container').style.display = 'block';
+            document.getElementById('logout-btn-container').style.display = 'none';
+            alert("You have been logged out.");
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('admin-panel').style.display = 'block';
+            document.getElementById('login-btn-container').style.display = 'none';
+            document.getElementById('logout-btn-container').style.display = 'block';
+            // document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- 3. IMAGE UPLOAD LOGIC ---
+        function uploadImages() {
+            const input = document.getElementById('imageUpload');
+            const files = input.files;
+
+            if (files.length === 0) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            let savedImages = [];
+            try {
+                savedImages = JSON.parse(localStorage.getItem('adminImages')) || [];
+            } catch(e) {}
+
+            for (let i = 0; i < files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    savedImages.push(base64Image);
+                    try {
+                        localStorage.setItem('adminImages', JSON.stringify(savedImages));
+                    } catch(e) {
+                        alert("Image is too large to save in the browser memory.");
+                    }
+                    addImageToGallery(base64Image);
+                };
+                reader.readAsDataURL(files[i]);
+            }
+            input.value = ''; 
+        }
+
+        function loadSavedImages() {
+            let savedImages = [];
+            try {
+                savedImages = JSON.parse(localStorage.getItem('adminImages')) || [];
+            } catch(e) {}
+            
+            if (savedImages.length > 0) {
+                document.getElementById('recent-uploads-title').style.display = 'inline-block';
+                savedImages.forEach(imgData => { addImageToGallery(imgData); });
+            }
+        }
+
+        function addImageToGallery(src) {
+            const container = document.getElementById('user-upload-container');
+            document.getElementById('recent-uploads-title').style.display = 'inline-block';
+            
+            const newDiv = document.createElement('div');
+            newDiv.className = 'gallery-item';
+            
+            const newImg = document.createElement('img');
+            newImg.src = src;
+            newImg.alt = "Recently Uploaded Work";
+            
+            newDiv.appendChild(newImg);
+            container.appendChild(newDiv);
+        }
+    </script>
+</body>
+</html>
